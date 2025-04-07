@@ -3,10 +3,10 @@ package mx.uam.proyecto.bl;
 import mx.uam.proyecto.blDto.PiezasDto;
 import mx.uam.proyecto.dal.PiezasDao;
 import mx.uam.proyecto.dalEntities.Piezas;
-import mx.uam.proyecto.dl.PiezaDao;
+
 
 public class GestorPiezas {
-    PiezasDao piezaDao = new PiezaDao();
+    PiezasDao piezasDao = new PiezasDao();
 
     public PiezasDto agregarPieza(Piezas piezas) {
         return null;
