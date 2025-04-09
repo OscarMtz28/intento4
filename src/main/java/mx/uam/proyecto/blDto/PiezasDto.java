@@ -2,18 +2,20 @@ package mx.uam.proyecto.blDto;
 
 public class PiezasDto {
     private String nombre;
-    private int id;
+    private int cantidad;
     private String descripcion;
 
-    public PiezasDto(String nombre, int id, String descripcion) {
+    public PiezasDto(String nombre, int cantidad, String descripcion) {
         this.nombre = nombre;
-        this.id = id;
+        this.cantidad = cantidad;
         this.descripcion = descripcion;
     }
+
+    
     public PiezasDto() {
     }
-    public PiezasDto(int id) {
-        this.id = id;
+    public PiezasDto(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public String getNombre() {
@@ -24,12 +26,12 @@ public class PiezasDto {
         this.nombre = nombre;
     }
 
-    public int getId() {
-        return id;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setcantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public String getDescripcion() {
