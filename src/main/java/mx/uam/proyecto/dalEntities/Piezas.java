@@ -25,6 +25,11 @@ public class Piezas {
         this.descripcion = descripcion;
     }
 
+    public Piezas (int id, int cantidad){
+        this.id=id;
+        this.cantidad=cantidad;
+    }
+
     public int getId() {
         return id;
     }
