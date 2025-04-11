@@ -4,6 +4,10 @@
 
 package mx.uam.proyecto;
 
+import javax.swing.SwingUtilities;
+
+import mx.uam.proyecto.pl.GestionPiezasUI;
+
 /**
  *
  * @author marti
@@ -11,6 +15,12 @@ package mx.uam.proyecto;
 public class Intento4 {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new GestionPiezasUI().setVisible(true);
+            }
+        });
+        
     }
 }

@@ -121,4 +121,60 @@ public class PiezasDao implements EntityDao<Piezas> {
         return false;
     }
 
+    // Implementación para obtener una pieza por ID
+    @Override
+    public Piezas getById(int id) {
+        String sql = "SELECT id, nombre, cantidad, descripcion FROM piezas WHERE id = ?";
+        Piezas pieza = null;
+    
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+    
+            if (rs.next()) {
+                pieza = new Piezas();
+                pieza.setId(rs.getInt("id"));
+                pieza.setNombre(rs.getString("nombre"));
+                pieza.setCantidad(rs.getInt("cantidad"));
+                pieza.setDescripcion(rs.getString("descripcion"));
+            }
+    
+        } catch (SQLException ex) {
+            ex.printStackTrace(); 
+        }
+    
+        return pieza;
+       
+    }
+    // Implementación para obtener una pieza por campo
+    @Override
+    public List<Piezas> getByField(String field, String value) {
+
+        List<Piezas> piezas = new ArrayList<>();
+        String sql = "SELECT id, nombre, cantidad, descripcion FROM piezas WHERE " + field + " = ?";
+    
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setString(1, value);
+            ResultSet rs = stmt.executeQuery();
+    
+            while (rs.next()) {
+                Piezas pieza = new Piezas();
+                pieza.setId(rs.getInt("id"));
+                pieza.setNombre(rs.getString("nombre"));
+                pieza.setCantidad(rs.getInt("cantidad"));
+                pieza.setDescripcion(rs.getString("descripcion"));
+    
+                piezas.add(pieza);
+            }
+    
+        } catch (SQLException ex) {
+            ex.printStackTrace(); 
+        }
+    
+        return piezas;
+        
+    }
+
 }
