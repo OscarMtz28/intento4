@@ -83,21 +83,22 @@ public class PiezasDao implements EntityDao<Piezas> {
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
     public Piezas update(Piezas pieza) {
-        String sql = "UPDATE piezas SET cantidad = ? WHERE id = ?";
-    
         try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, pieza.getCantidad());
-            stmt.setInt(2, pieza.getId());
-    
-            int filasAfectadas = stmt.executeUpdate();
-            if (filasAfectadas > 0) {
+            String sql = "UPDATE piezas SET nombre = ?, cantidad = ?, descripcion = ? WHERE id = ?";
+            PreparedStatement stmt = this.connection.prepareStatement(sql);
+            stmt.setString(1, pieza.getNombre());
+            stmt.setInt(2, pieza.getCantidad());
+            stmt.setString(3, pieza.getDescripcion());
+            stmt.setInt(4, pieza.getId());
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
                 return pieza;
             }
-    
         } catch (SQLException ex) {
-            ex.printStackTrace(); 
+            System.err.println("SQLException: " + ex.getMessage());
+            ex.printStackTrace();
         }
+       
     
         return null;
     }

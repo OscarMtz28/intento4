@@ -55,7 +55,7 @@ public class DbConnection {
     public void connect(){
         try {
             String stringConnection = getStringConnection();
-            this.connection = DriverManager.getConnection(stringConnection, user, user);
+            this.connection = DriverManager.getConnection(stringConnection, user, password);
         } catch (SQLException e) {
             System.err.println("SQLException: " + e.getMessage());
             e.printStackTrace();

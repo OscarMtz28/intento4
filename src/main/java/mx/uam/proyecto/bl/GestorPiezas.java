@@ -14,7 +14,7 @@ public class GestorPiezas {
         List<PiezasDto> piezasDto = new ArrayList<>();
         
         for (Piezas pieza : piezas) {
-            PiezasDto dto = new PiezasDto(pieza.getNombre(), pieza.getCantidad(), pieza.getDescripcion());
+            PiezasDto dto = new PiezasDto(pieza.getId(),pieza.getNombre(), pieza.getCantidad(), pieza.getDescripcion());
             piezasDto.add(dto);
         }
         return piezasDto;
@@ -30,7 +30,7 @@ public class GestorPiezas {
 
     public PiezasDto actualizarPieza(PiezasDto piezaDto) {
         PiezasDao dao = new PiezasDao();
-        Piezas pieza = new Piezas(piezaDto.getNombre(), piezaDto.getCantidad(), piezaDto.getDescripcion());
+        Piezas pieza = new Piezas(piezaDto.getId(),piezaDto.getNombre(), piezaDto.getCantidad(), piezaDto.getDescripcion());
         Piezas updatedPieza = dao.update(pieza);
         return new PiezasDto(updatedPieza.getNombre(), updatedPieza.getCantidad(), updatedPieza.getDescripcion());
     }
@@ -39,6 +39,28 @@ public class GestorPiezas {
         PiezasDao dao = new PiezasDao();
         return dao.delete(id);
     }
+
+    public PiezasDto getPiezaById(int id) {
+        PiezasDao dao = new PiezasDao();
+        Piezas pieza = dao.getById(id);
+        if (pieza != null) {
+            return new PiezasDto(pieza.getId(), pieza.getNombre(), pieza.getCantidad(), pieza.getDescripcion());
+        } else {
+            return null;
+        }
+    }
+    public List<PiezasDto> getPiezasByField(String field, String value) {
+        PiezasDao dao = new PiezasDao();
+        List<Piezas> piezas = dao.getByField(field, value);
+        List<PiezasDto> piezasDto = new ArrayList<>();
+        
+        for (Piezas pieza : piezas) {
+            PiezasDto dto = new PiezasDto(pieza.getId(),pieza.getNombre(), pieza.getCantidad(), pieza.getDescripcion());
+            piezasDto.add(dto);
+        }
+        return piezasDto;
+    }
+    
 
    
 

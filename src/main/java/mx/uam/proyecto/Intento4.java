@@ -15,11 +15,8 @@ import mx.uam.proyecto.pl.GestionPiezasUI;
 public class Intento4 {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new GestionPiezasUI().setVisible(true);
-            }
+        SwingUtilities.invokeLater(() -> {
+            new GestionPiezasUI().setVisible(true);
         });
         
     }
